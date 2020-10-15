@@ -12,38 +12,38 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
+import EventService from '@/services/EventService.js'
 export default {
   components: {
     EventCard
   },
-  // async asyncData({ $axios, error }) {
-  //   try {
-  //     const { data } = await $axios.get('http:localhost:3000/events')
-  //     return {
-  //       events: data
-  //     }
-  //   } catch (e) {
-  //     error({
-  //       statusCode: 503,
-  //       message: 'Unable to fetch event at the moments please try again. '
-  //     })
-  //   }
-  // },
-  asyncData({ $axios, error }) {
-    return $axios
-      .get('http:localhost:3000/events')
-      .then((response) => {
-        return {
-          events: response.data
-        }
+  async asyncData({ error }) {
+    try {
+      const { data } = await EventService.getEvents()
+      return {
+        events: data
+      }
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch event at the moments please try again. '
       })
-      .catch((e) => {
-        error({
-          statusCode: 503,
-          message: 'Unable to fetch event at the moment please try again. '
-        })
-      })
+    }
   },
+  // asyncData({  error }) {
+  //   return EventService.getEvents()
+  //     .then((response) => {
+  //       return {
+  //         events: response.data
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       error({
+  //         statusCode: 503,
+  //         message: 'Unable to fetch event at the moment please try again. '
+  //       })
+  //     })
+  // },
   head() {
     return {
       title: 'Event Listing '
