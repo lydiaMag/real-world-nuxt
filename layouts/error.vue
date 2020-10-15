@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: 'NuxtError',
+  // name: 'NuxtError',
   props: {
     error: {
       // <--- Send in the error

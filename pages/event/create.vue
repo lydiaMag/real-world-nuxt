@@ -11,7 +11,7 @@ export default {
         {
           hid: 'description',
           name: 'decription',
-          content: 'here you can find all the events in the neighberhood'
+          content: 'You can create new event '
         }
       ]
     }
